@@ -1,0 +1,27 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "What Next?" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Ghalib Shayari" %}</h1>
+      <p>List of Ghalib's Sher added by fellow users:</p>
+      {% if user.is_authenticated %}
+        
+        
+        
+      {% endif %}
+            
+            <p class="questions">
+               {% for q in questions %}
+		<h3><a href="{{q.get_absolute_url}}">{{q.question}}</a></h3>
+                <small style="float:right;">posted by - <a href="{{user.get_absolute_url}}">{{q.user}}</a> | {{q.created}}</small><hr/>
+               {% endfor %}
+            </p>
+            <div class="actions">
+            <a href="add_sher" class="btn large primary">Add a Ghalib Sher</a>
+            </div>
+      
+{% endblock %}

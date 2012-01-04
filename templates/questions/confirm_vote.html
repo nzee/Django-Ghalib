@@ -1,0 +1,25 @@
+{% extends "site_base.html" %}
+{% load bootstrap_tags %}
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "What Next?" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Confirmation!" %}</h1>
+    
+      {% if user.is_authenticated %}
+        <p>Are you sure?</p>
+        
+        
+      {% endif %}
+            
+      <form method="GET" action="">
+        {% csrf_token %}
+        
+        <div class="actions">
+            <button type="submit" class="btn primary">I Confirm</button>
+        </div>
+      </form>
+      
+{% endblock %}

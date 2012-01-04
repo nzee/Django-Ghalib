@@ -1,0 +1,34 @@
+{% extends "site_base.html" %}
+{% load bootstrap_tags %}
+{% load i18n %}
+{% load ifsetting_tag %}
+<style>
+#id_content { height: 50px; width: 500px; }
+</style>
+{% block head_title %}{% trans "What Next?" %}{% endblock %}
+
+{% block body %}
+    <h1>{{question.question|capfirst}}</h1>
+    <h3>{{question.content}}</h3>
+    <small style="float:right;">posted by - <a href="{{question.user.get_absolute_url}}">{{question.user}}</a> | {{question.created}}</small>
+    <hr/>
+    
+    <form method="POST" action="">
+        {% csrf_token %}
+        <fieldset>
+            {{ add_response_form }}
+        </fieldset>
+        <div class="actions">
+            <button type="submit" class="btn primary">Submit</button>
+        </div>
+    </form>
+    <hr/>
+    <h4>Responses</h4>
+    {% for r in responses %}
+    <ul>
+    <li>{{r.content}}</li>	
+    <small style="float:right;"> <a href="../../sher/vote-response/{{r.id}}/upvote/">up</a> | <a href="../../sher/vote-response/{{r.id}}/downvote/">down</a> | score : {{r.score}} | response by - <a href="{{r.user.get_absolute_url}}">{{r.user}}</a> | {{r.created}}</small><br/>
+    </ul>
+    {% endfor %}
+      
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "site_base.html" %}
+{% load bootstrap_tags %}
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "What Next?" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Add a Shayari" %}</h1>
+    
+      {% if user.is_authenticated %}
+        <p>Add a Ghalib Sher to discuss with fellow users and better understand it.</p>
+        
+        
+      {% endif %}
+            
+      <form method="POST" action="">
+        {% csrf_token %}
+        <fieldset>
+            {{ form|as_bootstrap }}
+        </fieldset>
+        <div class="actions">
+            <button type="submit" class="btn primary">Add</button>
+        </div>
+      </form>
+      
+{% endblock %}
